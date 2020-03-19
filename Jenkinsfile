@@ -20,18 +20,7 @@ pipeline {
                 }
             }
         }
-        stage('Push Docker Image') {
-            when {
-                branch 'master'
-            }
-            steps {
-                script {
 
-                    echo 'sending ${env.BUILD_NUMBER} to repo'
-                    }
-                }
-            }
-        }
         stage('DeployToProduction') {
             when {
                 branch 'master'
