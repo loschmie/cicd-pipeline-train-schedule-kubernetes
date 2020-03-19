@@ -1,15 +1,12 @@
 pipeline {
     agent any
     environment {
-        //be sure to replace "willbla" with your own Docker Hub username
         DOCKER_IMAGE_NAME = "loschmie/train-schedule"
     }
     stages {
         stage('Build') {
             steps {
-                echo 'Running build automation'
-                sh './gradlew build'
-                archiveArtifacts artifacts: 'dist/trainSchedule.zip'
+                echo 'Running some crazy shit'
             }
         }
         stage('Build Docker Image') {
@@ -18,9 +15,7 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build(DOCKER_IMAGE_NAME)
-                    app.inside {
-                        sh 'echo Hello, World!'
+                    echo 'Building Docker Image'
                     }
                 }
             }
@@ -31,9 +26,8 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
-                        app.push("${env.BUILD_NUMBER}")
-                        app.push("latest")
+
+                    echo 'sending ${env.BUILD_NUMBER} to repo'
                     }
                 }
             }
@@ -45,7 +39,7 @@ pipeline {
             steps {
                 input 'Deploy to Production?'
                 milestone(1)
-                //implement Kubernetes deployment here
+                echo 'app deployed!'
             }
         }
     }
