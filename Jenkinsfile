@@ -15,7 +15,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                    echo 'Building docker image'
+                    echo 'Building docker image "${DOCKER_IMAGE_NAME}"'
                 }
             }
         stage('Push Docker Image') {
