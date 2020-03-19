@@ -16,12 +16,10 @@ pipeline {
                 branch 'master'
             }
             steps {
-                script {
-                    echo 'Building the image'
-                    }
+
+
                 }
             }
-        }
         stage('Push Docker Image') {
             when {
                 branch 'master'
@@ -41,3 +39,4 @@ pipeline {
             }
         }
     }
+}
