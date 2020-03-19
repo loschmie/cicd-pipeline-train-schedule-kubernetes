@@ -1,12 +1,14 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = "loschmie/train-schedule"
+        //be sure to replace "willbla" with your own Docker Hub username
+        DOCKER_IMAGE_NAME = "willbla/train-schedule"
     }
     stages {
         stage('Build') {
             steps {
-                echo 'Running some crazy shit'
+                echo 'Running build automation'
+
             }
         }
         stage('Build Docker Image') {
@@ -14,20 +16,28 @@ pipeline {
                 branch 'master'
             }
             steps {
-                echo 'Building Docker Image'
+                script {
+                    echo 'Building the image'
+                    }
                 }
             }
         }
+        stage('Push Docker Image') {
+            when {
+                branch 'master'
+            }
+            steps {
+                echo 'Pushing the Image'
 
+            }
+        }
         stage('DeployToProduction') {
             when {
                 branch 'master'
             }
             steps {
-                input 'Deploy to Production?'
-                milestone(1)
-                echo 'app deployed!'
+                echo 'deploying to Production'
+
             }
         }
     }
-}
