@@ -8,7 +8,6 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Running build automation'
-
             }
         }
         stage('Build Docker Image') {
@@ -16,8 +15,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-
-
+                    echo 'Building docker image'
                 }
             }
         stage('Push Docker Image') {
