@@ -50,7 +50,7 @@ pipeline {
         }
     post {
         always {
-                slackUploadFile 'build.diff'
+                echo 'jedi govna'
             }
         }
     }
