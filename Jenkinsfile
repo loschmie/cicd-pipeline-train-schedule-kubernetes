@@ -14,7 +14,7 @@ pipeline {
                     def diff = changes.getDiff()
                     writeFile file: 'build.diff', text: diff
                 }
-                echo "${diff}"    
+                echo "${build.diff}"    
 
             }
         }
