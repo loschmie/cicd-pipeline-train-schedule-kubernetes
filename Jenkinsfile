@@ -14,15 +14,12 @@ pipeline {
                     def diff = changes.getDiff()
                     writeFile file: 'build.diff', text: diff
                     archiveArtifacts 'build.diff'
-                    environment {
-                        BUILD_DIFF = sh(
-                            script: 'echo ${diff}', , returnStdout: true).trim()
-                        )
-                    }
                     def output = sh returnStdout: true, script: 'pwd'
                 }
+                echo "${diff}"
             }
         }
+
         stage('Build') {
             steps {
                 echo 'Running build automation'
