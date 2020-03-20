@@ -50,4 +50,9 @@ pipeline {
         }
 
     }
+    post {
+        always {
+            slackSend channel: 'jenkins', message: 'this is some superb action', teamDomain: 'homechat-crew', tokenCredentialId: 'slack_token'
+        }
+    }    
 }
