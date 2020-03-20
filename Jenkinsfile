@@ -12,7 +12,7 @@ pipeline {
                     publisher.publishLastChanges()
                     def changes = publisher.getLastChanges()
                     def diff = changes.getDiff()
-                    writeFile file: 'build.diff', text: mostrecent_diff
+                    writeFile file: 'build.diff', text: diff
                     emailext (
                       subject: "Sending diff of Job '${env.JOB_NAME} #${env.BUILD_NUMBER}'",
                       attachmentsPattern: '**/*.diff',
