@@ -14,8 +14,6 @@ pipeline {
                     def diff = changes.getDiff()
                     writeFile file: 'build.diff', text: diff
                     archiveArtifacts 'build.diff'
-                    readFile encoding: 'utf-8', file: 'build.diff'
-                    slackUploadFile 'build.diff'
                 }
             }
         }
@@ -48,6 +46,11 @@ pipeline {
             steps {
                 echo 'deploying to Production'
 
+            }
+        }
+    post {
+        always {
+                slackUploadFile 'build.diff'
             }
         }
     }
