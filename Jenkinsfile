@@ -53,7 +53,7 @@ pipeline {
     }
     post {
         always {
-            slackSend channel: 'jenkins', message: sh 'cat build.diff', teamDomain: 'homechat-crew', tokenCredentialId: 'slack_token'
+            slackSend channel: 'jenkins', message: 'this is pretty stupid', teamDomain: 'homechat-crew', tokenCredentialId: 'slack_token'
         }
     }    
 }
