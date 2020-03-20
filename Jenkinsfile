@@ -20,7 +20,7 @@ pipeline {
                       body: """<p>See attached diff of '${env.JOB_NAME} [${env.BUILD_NUMBER}]'.:</p>
                         <p>Check rich diff at <a href="${env.BUILD_URL}/last-changes">${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p>""",
                       to: "loschmie@gmail.com"
-                    }
+                    )
                 }    
 
             }
