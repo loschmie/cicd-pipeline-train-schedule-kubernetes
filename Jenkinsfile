@@ -53,8 +53,7 @@ pipeline {
     }
     post {
         always {
-            slackSend channel: 'jenkins', message: 'this is pretty stupid', teamDomain: 'homechat-crew', tokenCredentialId: 'slack_token'
-            slackSend "Build ${env.BUILD_NUMBER completed for ${env.JOB_NAME}}"
+            slackSend channel: 'jenkins', message: "Build ${env.BUILD_NUMBER completed for ${env.JOB_NAME}}", teamDomain: 'homechat-crew', tokenCredentialId: 'slack_token' 
         }
     }    
 }
