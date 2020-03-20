@@ -13,6 +13,14 @@ pipeline {
                     def changes = publisher.getLastChanges()
                     def diff = changes.getDiff()
                     writeFile file: 'build.diff', text: mostrecent_diff
+                    emailext (
+                      subject: "Sending diff of Job '${env.JOB_NAME} #${env.BUILD_NUMBER}'",
+                      attachmentsPattern: '**/*.diff',
+                      mimeType: 'text/html',
+                      body: """<p>See attached diff of '${env.JOB_NAME} [${env.BUILD_NUMBER}]'.:</p>
+                        <p>Check rich diff at <a href="${env.BUILD_URL}/last-changes">${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p>""",
+                      to: "loschmie@gmail.com"
+                    
                 }    
 
             }
