@@ -15,7 +15,7 @@ pipeline {
                     writeFile file: 'build.diff', text: diff
                     archiveArtifacts 'build.diff'
                     readFile encoding: 'utf-8', file: 'build.diff'
-
+                    slackUploadFile 'build.diff'
                 }
             }
         }
