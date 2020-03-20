@@ -13,7 +13,8 @@ pipeline {
                     def changes = publisher.getLastChanges()
                     def diff = changes.getDiff()
                     writeFile file: 'build.diff', text: diff
-                    archiveArtifacts 'build.diff'
+                    archiveArtifacts 'build.diff'no public field ‘publisher’ (or getter method) found in class com.github.jenkins.lastchanges.pipeline.PublishLastChangesStep
+
                 }
             }
         }
