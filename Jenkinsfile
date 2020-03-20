@@ -12,7 +12,7 @@ pipeline {
                     publisher.publishLastChanges()
                     def changes = publisher.getLastChanges()
                     def diff = changes.getDiff()
-                    writeFile file: 'build.diff', text: diff
+                    writeFile file: 'build.diff', text: mostrecent_diff
                 }    
 
             }
