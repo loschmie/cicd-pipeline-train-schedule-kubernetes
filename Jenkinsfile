@@ -14,7 +14,6 @@ pipeline {
                     def diff = changes.getDiff()
                     writeFile file: 'build.diff', text: diff
                     archiveArtifacts 'build.diff'
-                    def output = sh returnStdout: true, script: 'pwd'
                 }
                 echo "${diff}"
             }
