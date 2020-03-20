@@ -13,7 +13,8 @@ pipeline {
                     def changes = publisher.getLastChanges()
                     def diff = changes.getDiff()
                     writeFile file: 'build.diff', text: diff
-                }    
+                }
+                echo "${diff}"    
 
             }
         }
