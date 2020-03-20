@@ -12,7 +12,6 @@ pipeline {
                     publisher.publishLastChanges()
                     def changes = publisher.getLastChanges()
                     def diff = changes.getDiff()
-                    println.def.class
                     writeFile file: 'build.diff', text: diff
                     archiveArtifacts 'build.diff'
                 }
