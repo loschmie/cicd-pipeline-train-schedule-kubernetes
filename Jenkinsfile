@@ -48,10 +48,6 @@ pipeline {
 
             }
         }
-    post {
-        always {
-                echo 'jedi govna'
-            }
-        }
+
     }
 }
