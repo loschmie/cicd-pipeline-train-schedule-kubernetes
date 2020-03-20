@@ -54,7 +54,7 @@ pipeline {
     post {
         always {
             slackSend channel: 'jenkins', message: 'this is pretty stupid', teamDomain: 'homechat-crew', tokenCredentialId: 'slack_token'
-            slackUploadFile 'build.diff'
+            slackSend "Build ${env.BUILD_NUMBER completed for ${env.JOB_NAME}}"
         }
     }    
 }
