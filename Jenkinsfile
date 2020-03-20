@@ -13,9 +13,8 @@ pipeline {
                     def changes = publisher.getLastChanges()
                     def diff = changes.getDiff()
                     writeFile file: 'build.diff', text: diff
+                    archiveArtifacts 'build.diff'
                 }
-                echo "${build.diff}"    
-
             }
         }
         stage('Build') {
