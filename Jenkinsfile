@@ -16,7 +16,7 @@ pipeline {
                     archiveArtifacts 'build.diff'
                     environment {
                         BUILD_DIFF = sh(
-                            script: 'cat ./build.diff', , returnStdout: true).trim()
+                            script: 'echo ${diff}', , returnStdout: true).trim()
                         )
                     }
                     def output = sh returnStdout: true, script: 'pwd'
