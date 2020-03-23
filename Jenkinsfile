@@ -12,7 +12,6 @@ pipeline {
                     publisher.publishLastChanges()
                     def changes = publisher.getLastChanges()
                     def diff = changes.getDiff()
-                    withEnv(["VAR1=${diff}"])
                     writeFile file: 'build.diff', text: diff
                     archiveArtifacts 'build.diff'
                 }
@@ -54,7 +53,7 @@ pipeline {
     }
     post {
         always {
-            slackSend channel: 'jenkins', message: "Build ${env.BUILD_NUMBER} completed for  ${env.JOB_NAME}.  Details: (<${env.BUILD_URL} | here >) ImageName: ${VAR1}", teamDomain: 'homechat-crew', tokenCredentialId: 'slack_token' 
+            slackSend channel: 'jenkins', message: "Build ${env.BUILD_NUMBER} completed for  ${env.JOB_NAME}.  Details: (<${env.BUILD_URL} | here >) ImageName: ${DOCKER_IMAGE_NAME}", teamDomain: 'homechat-crew', tokenCredentialId: 'slack_token' 
         }
     }    
 }
