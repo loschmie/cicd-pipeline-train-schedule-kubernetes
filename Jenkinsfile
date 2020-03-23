@@ -47,7 +47,10 @@ pipeline {
     }
     post {
         always {
-            slackSend channel: 'jenkins', message: "Build ${env.BUILD_NUMBER} completed for  ${env.JOB_NAME}.  Details: ${BUILD_DIFF}", teamDomain: 'homechat-crew', tokenCredentialId: 'slack_token' 
+            script {
+               slackSend channel: 'jenkins', message: "Build ${env.BUILD_NUMBER} completed for  ${env.JOB_NAME}.  Details: ${BUILD_DIFF}", teamDomain: 'homechat-crew', tokenCredentialId: 'slack_token'
+            }
+             
         }
     }    
 }
