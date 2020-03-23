@@ -15,6 +15,7 @@ pipeline {
                     writeFile file: 'build.diff', text: diff
                     archiveArtifacts 'build.diff'
                 }
+                println(env.PATH)
             }
         }
 
