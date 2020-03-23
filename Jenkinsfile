@@ -38,11 +38,9 @@ pipeline {
                 branch 'master'
             }
             steps {
-                echo 'Pushing the Image'
-                def diffs = readFile "${env.WORKSPACE}/build.diff'
-                echo "$diffs"
-
+                echo "UPloading this shit"
             }
+
         }
 
     }
