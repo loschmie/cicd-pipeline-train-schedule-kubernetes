@@ -38,7 +38,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                echo "UPloading this shit"
+                echo "$BUILD_URL"
             }
 
         }
