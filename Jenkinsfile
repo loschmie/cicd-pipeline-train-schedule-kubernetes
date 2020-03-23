@@ -13,8 +13,6 @@ pipeline {
                     def changes = publisher.getLastChanges()
                     def diff = changes.getDiff()
                     writeFile file: 'build.diff', text: diff
-                    sh "echo $DOCKER_IMAGE_NAME"
-                    archiveArtifacts 'build.diff'
                     echo "$diff"
                 }
             }
