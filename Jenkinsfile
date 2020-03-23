@@ -13,6 +13,7 @@ pipeline {
                     def changes = publisher.getLastChanges()
                     def diff = changes.getDiff()
                     writeFile file: 'build.diff', text: diff
+                    archiveArtifacts 'build.diff'
                     echo "$diff"
                 }
                 
@@ -41,12 +42,14 @@ pipeline {
 
             }
         }
-        stage('DeployToProduction') {
-            when {
-                branch 'master'
-            }
+        stage('reading from a file') {
+
             steps {
-                echo 'deploying to Production'
+                script {
+                    def props = readProperties file: 'build.diff'
+                    env.DIFF = props.DIFF
+                }
+                sh "echo The weather is $DIFF"
 
             }
         }
