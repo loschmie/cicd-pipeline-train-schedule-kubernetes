@@ -12,7 +12,8 @@ pipeline {
                     publisher.publishLastChanges()
                     def changes = publisher.getLastChanges()
                     def diff = changes.getDiff()
-                    slackSend(channel: '#jenkins', attachments: diff)
+                    writeFile file: 'build.diff', text: diff
+                    archiveArtifacts 'build.diff'
                 }
             }
         }
