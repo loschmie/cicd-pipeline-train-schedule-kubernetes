@@ -38,8 +38,11 @@ pipeline {
                 branch 'master'
             }
             steps {
-                def data = readFile(file: 'build.diff').trim()
-                println(data)
+                script {
+                    def data = readFile(file: 'build.diff').trim()
+                    println(data)
+                }
+               
             }
 
         }
