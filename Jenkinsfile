@@ -14,9 +14,8 @@ pipeline {
                     def diff = changes.getDiff()
                     writeFile file: 'build.diff', text: diff
                     echo ${diff}
-                    withEnv(["BUILD_CHANGES= echo ${diff}"]){
-                        def result = sh(script: 'echo $BUILD_CHANGES', returnStdout: true)
-                        echo result
+                    withEnv(["BUILD_CHANGES= sh 'cat build.diff'"]){
+                        echo $BUILD_CHANGES
                     }
                     archiveArtifacts 'build.diff'
                     println(diff)
