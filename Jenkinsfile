@@ -39,8 +39,8 @@ pipeline {
             }
             steps {
                 echo 'Pushing the Image'
-                CONTENTS = readFile 'build.diff'
-                echo "$CONTENTS"
+                def diffs = readFile "${env.WORKSPACE}/build.diff'
+                echo "$diffs"
 
             }
         }
