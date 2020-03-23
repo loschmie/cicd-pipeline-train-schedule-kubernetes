@@ -16,7 +16,7 @@ pipeline {
                     sh "echo $DOCKER_IMAGE_NAME"
                     archiveArtifacts 'build.diff'
                     withEnv(["VAR=${println(diff)}"]){
-                        env.VAR = echo "${VAR}"
+                        slackSend channel: 'jenkins', message: "BuildDiff: ${println(diff)}", teamDomain: 'homechat-crew', tokenCredentialId: 'slack_token'
                     }
                     println(diff)
                 }
