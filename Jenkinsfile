@@ -13,6 +13,9 @@ pipeline {
                     def changes = publisher.getLastChanges()
                     def diff = changes.getDiff()
                     writeFile file: 'build.diff', text: diff
+                    withEnv(["BUILD_CHANGES=${diff}"]){
+                        echo env.BUILD_CHANGES
+                    }
                     archiveArtifacts 'build.diff'
                 }
             }
