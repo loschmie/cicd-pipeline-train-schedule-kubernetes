@@ -39,7 +39,7 @@ pipeline {
             }
             steps {
                 def var = readFile('build.diff').trim()
-                echo "$var"
+                println ${var}
             }
 
         }
