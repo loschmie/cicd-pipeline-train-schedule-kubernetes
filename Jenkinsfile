@@ -38,7 +38,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                def var = readFile('build.diff').trip
+                def var = readFile('build.diff').trim()
                 echo "$var"
             }
 
