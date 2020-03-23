@@ -1,7 +1,6 @@
 pipeline {
     agent any
     environment {
-        //be sure to replace "willbla" with your own Docker Hub username
         DOCKER_IMAGE_NAME = "loschmie/testing_test"
     }
     stages {
@@ -14,7 +13,6 @@ pipeline {
                     def diff = changes.getDiff()
                     writeFile file: 'build.diff', text: diff
                     archiveArtifacts 'build.diff'
-                    BUILD_DIFF = echo "$diff"
                 }
                 
             }
