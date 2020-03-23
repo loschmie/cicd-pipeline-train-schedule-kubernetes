@@ -48,7 +48,8 @@ pipeline {
     post {
         always {
             script {
-               slackSend channel: 'jenkins', message: "Build ${env.BUILD_NUMBER} completed for  ${env.JOB_NAME}.  Details: ${BUILD_DIFF}", teamDomain: 'homechat-crew', tokenCredentialId: 'slack_token'
+                def data = readFile(file: 'build.diff').trim()
+                slackSend channel: 'jenkins', message: "Build ${env.BUILD_NUMBER} completed for  ${env.JOB_NAME}.  Details: ${data}", teamDomain: 'homechat-crew', tokenCredentialId: 'slack_token'
             }
              
         }
