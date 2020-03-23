@@ -14,7 +14,7 @@ pipeline {
                     def diff = changes.getDiff()
                     writeFile file: 'build.diff', text: diff
                     archiveArtifacts 'build.diff'
-                    echo "$diff"
+                    BUILD_DIFF = echo "$diff"
                 }
                 
             }
@@ -42,22 +42,11 @@ pipeline {
 
             }
         }
-        stage('reading from a file') {
-
-            steps {
-                script {
-                    def props = readProperties file: 'build.diff'
-                    env.DIFF = props.DIFF
-                }
-                sh "echo The weather is $DIFF"
-
-            }
-        }
 
     }
     post {
         always {
-            slackSend channel: 'jenkins', message: "Build ${env.BUILD_NUMBER} completed for  ${env.JOB_NAME}.  Details: ${DOCKER_IMAGE_NAME}", teamDomain: 'homechat-crew', tokenCredentialId: 'slack_token' 
+            slackSend channel: 'jenkins', message: "Build ${env.BUILD_NUMBER} completed for  ${env.JOB_NAME}.  Details: ${BUILD_DIFF}", teamDomain: 'homechat-crew', tokenCredentialId: 'slack_token' 
         }
     }    
 }
