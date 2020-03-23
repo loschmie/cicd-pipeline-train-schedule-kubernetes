@@ -38,7 +38,8 @@ pipeline {
                 branch 'master'
             }
             steps {
-                echo "$BUILD_URL"
+                def var = readFile('build.diff').trip
+                echo "$var"
             }
 
         }
