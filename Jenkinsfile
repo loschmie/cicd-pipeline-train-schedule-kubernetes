@@ -39,6 +39,8 @@ pipeline {
             }
             steps {
                 echo 'Pushing the Image'
+                CONTENTS = readFile 'build.diff'
+                echo "$CONTENTS"
 
             }
         }
