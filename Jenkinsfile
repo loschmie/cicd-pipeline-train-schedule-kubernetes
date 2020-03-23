@@ -15,6 +15,9 @@ pipeline {
                     writeFile file: 'build.diff', text: diff
                     sh "echo $DOCKER_IMAGE_NAME"
                     archiveArtifacts 'build.diff'
+                    withEnv(["VAR=${println(diff)}"]){
+                        echo "$VAR"
+                    }
                     println(diff)
                 }
             }
@@ -55,7 +58,7 @@ pipeline {
     }
     post {
         always {
-            slackSend channel: 'jenkins', message: "Build ${env.BUILD_NUMBER} completed for  ${env.JOB_NAME}.  Details: (<${env.BUILD_URL} | here >) ImageName: ${println(diff)}", teamDomain: 'homechat-crew', tokenCredentialId: 'slack_token' 
+            slackSend channel: 'jenkins', message: "Build ${env.BUILD_NUMBER} completed for  ${env.JOB_NAME}.  Details: (<${env.BUILD_URL} | here >) ImageName: ${VAR}", teamDomain: 'homechat-crew', tokenCredentialId: 'slack_token' 
         }
     }    
 }
