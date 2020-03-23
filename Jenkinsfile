@@ -38,10 +38,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                script {
-                    def data = readFile(file: 'build.diff').trim()
-                    println(data)
-                }
+                echo "Pushing image"
                
             }
 
